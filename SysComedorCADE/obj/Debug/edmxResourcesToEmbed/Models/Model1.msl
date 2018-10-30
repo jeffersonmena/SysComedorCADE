@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SCCADEModelStoreContainer" CdmEntityContainer="SCCADEEntities">
+    <EntitySetMapping Name="CostosAlimentacion">
+      <EntityTypeMapping TypeName="SCCADEModel.CostosAlimentacion">
+        <MappingFragment StoreEntitySet="CostosAlimentacion">
+          <ScalarProperty Name="anio" ColumnName="anio" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="FRegistro" ColumnName="FRegistro" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+          <ScalarProperty Name="CodCosto" ColumnName="CodCosto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Entidad">
+      <EntityTypeMapping TypeName="SCCADEModel.Entidad">
+        <MappingFragment StoreEntitySet="Entidad">
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Dir" ColumnName="Dir" />
+          <ScalarProperty Name="tel" ColumnName="tel" />
+          <ScalarProperty Name="ruc" ColumnName="ruc" />
+          <ScalarProperty Name="NombreEntidad" ColumnName="NombreEntidad" />
+          <ScalarProperty Name="CodEntidad" ColumnName="CodEntidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EstadoCuentaPersona">
+      <EntityTypeMapping TypeName="SCCADEModel.EstadoCuentaPersona">
+        <MappingFragment StoreEntitySet="EstadoCuentaPersona">
+          <ScalarProperty Name="anio" ColumnName="anio" />
+          <ScalarProperty Name="FRegistro" ColumnName="FRegistro" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="pagos" ColumnName="pagos" />
+          <ScalarProperty Name="CodPersona" ColumnName="CodPersona" />
+          <ScalarProperty Name="CodVenta" ColumnName="CodVenta" />
+          <ScalarProperty Name="CodEstadoCta" ColumnName="CodEstadoCta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genero">
+      <EntityTypeMapping TypeName="SCCADEModel.Genero">
+        <MappingFragment StoreEntitySet="Genero">
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+          <ScalarProperty Name="Abrev" ColumnName="Abrev" />
+          <ScalarProperty Name="CodGenero" ColumnName="CodGenero" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HorariosAtencion">
+      <EntityTypeMapping TypeName="SCCADEModel.HorariosAtencion">
+        <MappingFragment StoreEntitySet="HorariosAtencion">
+          <ScalarProperty Name="HorarioFin" ColumnName="HorarioFin" />
+          <ScalarProperty Name="HorarioInicio" ColumnName="HorarioInicio" />
+          <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+          <ScalarProperty Name="CodHoario" ColumnName="CodHoario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Persona">
+      <EntityTypeMapping TypeName="SCCADEModel.Persona">
+        <MappingFragment StoreEntitySet="Persona">
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="CodEntidad" ColumnName="CodEntidad" />
+          <ScalarProperty Name="CodGenero" ColumnName="CodGenero" />
+          <ScalarProperty Name="Dir" ColumnName="Dir" />
+          <ScalarProperty Name="Cel" ColumnName="Cel" />
+          <ScalarProperty Name="Telf" ColumnName="Telf" />
+          <ScalarProperty Name="CiRuc" ColumnName="CiRuc" />
+          <ScalarProperty Name="NombresCompletos" ColumnName="NombresCompletos" />
+          <ScalarProperty Name="CodTipoPer" ColumnName="CodTipoPer" />
+          <ScalarProperty Name="CodPersona" ColumnName="CodPersona" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoPago">
+      <EntityTypeMapping TypeName="SCCADEModel.TipoPago">
+        <MappingFragment StoreEntitySet="TipoPago">
+          <ScalarProperty Name="DetTipoPago" ColumnName="DetTipoPago" />
+          <ScalarProperty Name="CodTipoPago" ColumnName="CodTipoPago" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoPersona">
+      <EntityTypeMapping TypeName="SCCADEModel.TipoPersona">
+        <MappingFragment StoreEntitySet="TipoPersona">
+          <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+          <ScalarProperty Name="CodTipoPer" ColumnName="CodTipoPer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Venta">
+      <EntityTypeMapping TypeName="SCCADEModel.Venta">
+        <MappingFragment StoreEntitySet="Venta">
+          <ScalarProperty Name="anio" ColumnName="anio" />
+          <ScalarProperty Name="FVenta" ColumnName="FVenta" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Costo" ColumnName="Costo" />
+          <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="CodTipoPago" ColumnName="CodTipoPago" />
+          <ScalarProperty Name="CodPersona" ColumnName="CodPersona" />
+          <ScalarProperty Name="CodVenta" ColumnName="CodVenta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="SCCADEModel.Usuarios">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="politica" ColumnName="politica" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="FRegistro" ColumnName="FRegistro" />
+          <ScalarProperty Name="Clave" ColumnName="Clave" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="CodPersona" ColumnName="CodPersona" />
+          <ScalarProperty Name="CodUsuario" ColumnName="CodUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

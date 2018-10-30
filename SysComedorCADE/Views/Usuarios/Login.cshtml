@@ -1,0 +1,98 @@
+﻿@model SysComedorCADE.Models.Usuarios
+@{
+
+    Layout = "";
+    ViewBag.Title = "Login";
+}
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--Ayuda que se adapte a los dispositivos mobiles-->
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="description" content="Description of your web page goes here." />
+<meta name="keywords" content="Keywords for you web page go here. Each keyword or group of keyword phrases are separated by a comma. Keep this  list short and relevant to the content and title of this specific page." />
+<link rel="shortcut icon" href="../../Content/images/favicon.ico" />
+<link href="../../Content/bootstrap.css" rel="stylesheet" />
+<style>
+    .btn-primary {
+        background-color: #003e57 !important;
+        border: #003e57 !important;
+    }
+
+    body {
+        background: #003B5C;
+    }
+    /*bootstrap da estilos a los demas elementos*/
+    /*modal-content-login solo aplica a la posicion y responsividad del login*/
+    .modal-content-login {
+        border-radius: 5px;
+        padding: 17px;
+        width: 300px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        background-color: #fff;
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box;
+        border: 1px solid #999;
+        border: 1px solid rgba(0, 0, 0, .2);
+        border-radius: 6px;
+        outline: 0;
+        -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+        box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+    }
+    /*Clase menora padding y centra el texto opuesto de las class propias de bootstrap*/
+    .modal-footer {
+        padding: 1px;
+        text-align: center;
+        border-top: 1px solid #e5e5e5;
+    }
+
+    .foot {
+        display: flex;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: calc(100%);
+        height: 80px;
+        background-color: transparent;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        @*<img src="~/Images/"/>*@
+    </div>
+    <div class="modal-content-login ">
+        @using (Html.BeginForm(new { data_bind = "value: FormUsuario", @class = "form-inline" }))
+            {
+            <center>
+                <h3><i class="glyphicon glyphicon-user" style="padding-right:10px;"></i>LOGIN</h3>
+            </center>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Usuario, "Usuario")
+                @Html.TextBoxFor(model => model.Usuario, new { data_bind = "value: Usuario", @class = "form-control", placeholder = "Usuario" })
+                @Html.ValidationMessageFor(model => model.Usuario)
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Clave, "Contraseña")
+                @Html.PasswordFor(model => model.Clave, new { data_bind = "value: Password", @class = "form-control", placeholder = "Contraseña" })
+                @Html.ValidationMessageFor(model => model.Clave)
+            </div>
+            <div class="form-group" align="Right">
+                <input class="btn btn-primary" type="submit" value="Ingresar" />
+            </div>
+        }
+        <div class="modal-footer">
+            Sistema Finaciero Para Comedor  <br />
+            ITSAE - CADE  2018
+        </div>
+    </div>
+</div>
+<footer class="foot">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto " style="color:white;">
+            <span><a href="http://saecorp.tk/">saecorp</a> © SysComedorCADE 2018</span> <br />
+            <span>Jefferson Mena</span>
+        </div>
+    </div>
+</footer>

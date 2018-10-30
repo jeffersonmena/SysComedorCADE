@@ -1,0 +1,58 @@
+﻿@model SysComedorCADE.Models.CostosAlimentacion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CostosAlimentacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Detalle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Detalle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FRegistro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FRegistro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.anio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anio)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CodCosto }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

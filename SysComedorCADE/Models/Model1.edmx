@@ -1,0 +1,668 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SCCADEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CostosAlimentacion">
+          <Key>
+            <PropertyRef Name="CodCosto" />
+          </Key>
+          <Property Name="CodCosto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="anio" Type="int" Nullable="false" />
+          <Property Name="Detalle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Valor" Type="money" Nullable="false" />
+          <Property Name="FRegistro" Type="datetime" Nullable="false" />
+          <Property Name="Estado" Type="bit" />
+        </EntityType>
+        <EntityType Name="Entidad">
+          <Key>
+            <PropertyRef Name="CodEntidad" />
+          </Key>
+          <Property Name="CodEntidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreEntidad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ruc" Type="nvarchar" MaxLength="13" Nullable="false" />
+          <Property Name="tel" Type="nvarchar" MaxLength="13" />
+          <Property Name="Dir" Type="nvarchar" MaxLength="200" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EstadoCuentaPersona">
+          <Key>
+            <PropertyRef Name="CodEstadoCta" />
+          </Key>
+          <Property Name="CodEstadoCta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="anio" Type="int" Nullable="false" />
+          <Property Name="CodVenta" Type="int" Nullable="false" />
+          <Property Name="CodPersona" Type="int" Nullable="false" />
+          <Property Name="pagos" Type="int" />
+          <Property Name="Valor" Type="money" Nullable="false" />
+          <Property Name="FRegistro" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Genero">
+          <Key>
+            <PropertyRef Name="CodGenero" />
+          </Key>
+          <Property Name="CodGenero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Abrev" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="Detalle" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HorariosAtencion">
+          <Key>
+            <PropertyRef Name="CodHoario" />
+          </Key>
+          <Property Name="CodHoario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Detalle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HorarioInicio" Type="int" />
+          <Property Name="HorarioFin" Type="int" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="CodPersona" />
+          </Key>
+          <Property Name="CodPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodTipoPer" Type="int" />
+          <Property Name="NombresCompletos" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CiRuc" Type="nvarchar" MaxLength="13" Nullable="false" />
+          <Property Name="Telf" Type="nvarchar" MaxLength="15" />
+          <Property Name="Cel" Type="nvarchar" MaxLength="15" />
+          <Property Name="Dir" Type="nvarchar" MaxLength="100" />
+          <Property Name="CodGenero" Type="int" Nullable="false" />
+          <Property Name="CodEntidad" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="bit" />
+        </EntityType>
+        <EntityType Name="TipoPago">
+          <Key>
+            <PropertyRef Name="CodTipoPago" />
+          </Key>
+          <Property Name="CodTipoPago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DetTipoPago" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoPersona">
+          <Key>
+            <PropertyRef Name="CodTipoPer" />
+          </Key>
+          <Property Name="CodTipoPer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Detalle" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="CodUsuario" />
+          </Key>
+          <Property Name="CodUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodPersona" Type="int" Nullable="false" />
+          <Property Name="Usuario" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Clave" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FRegistro" Type="datetime" Nullable="false" />
+          <Property Name="politica" Type="int" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Venta">
+          <Key>
+            <PropertyRef Name="CodVenta" />
+          </Key>
+          <Property Name="CodVenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="anio" Type="int" Nullable="false" />
+          <Property Name="CodPersona" Type="int" Nullable="false" />
+          <Property Name="CodTipoPago" Type="int" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+          <Property Name="Detalle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Costo" Type="money" Nullable="false" />
+          <Property Name="Total" Type="money" Nullable="false" />
+          <Property Name="FVenta" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__EstadoCue__CodPe__38996AB5">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="EstadoCuentaPersona" Type="Self.EstadoCuentaPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="CodPersona" />
+            </Principal>
+            <Dependent Role="EstadoCuentaPersona">
+              <PropertyRef Name="CodPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EstadoCue__CodVe__398D8EEE">
+          <End Role="Venta" Type="Self.Venta" Multiplicity="1" />
+          <End Role="EstadoCuentaPersona" Type="Self.EstadoCuentaPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venta">
+              <PropertyRef Name="CodVenta" />
+            </Principal>
+            <Dependent Role="EstadoCuentaPersona">
+              <PropertyRef Name="CodVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__CodEnti__2B3F6F97">
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entidad">
+              <PropertyRef Name="CodEntidad" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="CodEntidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__CodGene__2A4B4B5E">
+          <End Role="Genero" Type="Self.Genero" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genero">
+              <PropertyRef Name="CodGenero" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="CodGenero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__CodTipo__29572725">
+          <End Role="TipoPersona" Type="Self.TipoPersona" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPersona">
+              <PropertyRef Name="CodTipoPer" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="CodTipoPer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__CodPers__2E1BDC42">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="CodPersona" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="CodPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Venta__CodPerson__35BCFE0A">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="CodPersona" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="CodPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Venta__CodTipoPa__34C8D9D1">
+          <End Role="TipoPago" Type="Self.TipoPago" Multiplicity="1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPago">
+              <PropertyRef Name="CodTipoPago" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="CodTipoPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SCCADEModelStoreContainer">
+          <EntitySet Name="CostosAlimentacion" EntityType="Self.CostosAlimentacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Entidad" EntityType="Self.Entidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstadoCuentaPersona" EntityType="Self.EstadoCuentaPersona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genero" EntityType="Self.Genero" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HorariosAtencion" EntityType="Self.HorariosAtencion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoPago" EntityType="Self.TipoPago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoPersona" EntityType="Self.TipoPersona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Venta" EntityType="Self.Venta" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__EstadoCue__CodPe__38996AB5" Association="Self.FK__EstadoCue__CodPe__38996AB5">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="EstadoCuentaPersona" EntitySet="EstadoCuentaPersona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EstadoCue__CodVe__398D8EEE" Association="Self.FK__EstadoCue__CodVe__398D8EEE">
+            <End Role="Venta" EntitySet="Venta" />
+            <End Role="EstadoCuentaPersona" EntitySet="EstadoCuentaPersona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__CodEnti__2B3F6F97" Association="Self.FK__Persona__CodEnti__2B3F6F97">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__CodGene__2A4B4B5E" Association="Self.FK__Persona__CodGene__2A4B4B5E">
+            <End Role="Genero" EntitySet="Genero" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__CodTipo__29572725" Association="Self.FK__Persona__CodTipo__29572725">
+            <End Role="TipoPersona" EntitySet="TipoPersona" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__CodPers__2E1BDC42" Association="Self.FK__Usuario__CodPers__2E1BDC42">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Venta__CodPerson__35BCFE0A" Association="Self.FK__Venta__CodPerson__35BCFE0A">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Venta__CodTipoPa__34C8D9D1" Association="Self.FK__Venta__CodTipoPa__34C8D9D1">
+            <End Role="TipoPago" EntitySet="TipoPago" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SCCADEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SCCADEEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CostosAlimentacion" EntityType="SCCADEModel.CostosAlimentacion" />
+          <EntitySet Name="Entidad" EntityType="SCCADEModel.Entidad" />
+          <EntitySet Name="EstadoCuentaPersona" EntityType="SCCADEModel.EstadoCuentaPersona" />
+          <EntitySet Name="Genero" EntityType="SCCADEModel.Genero" />
+          <EntitySet Name="HorariosAtencion" EntityType="SCCADEModel.HorariosAtencion" />
+          <EntitySet Name="Persona" EntityType="SCCADEModel.Persona" />
+          <EntitySet Name="TipoPago" EntityType="SCCADEModel.TipoPago" />
+          <EntitySet Name="TipoPersona" EntityType="SCCADEModel.TipoPersona" />
+          <EntitySet Name="Venta" EntityType="SCCADEModel.Venta" />
+          <AssociationSet Name="FK__Persona__CodEnti__2B3F6F97" Association="SCCADEModel.FK__Persona__CodEnti__2B3F6F97">
+            <End Role="Entidad" EntitySet="Entidad" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EstadoCue__CodPe__38996AB5" Association="SCCADEModel.FK__EstadoCue__CodPe__38996AB5">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="EstadoCuentaPersona" EntitySet="EstadoCuentaPersona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EstadoCue__CodVe__398D8EEE" Association="SCCADEModel.FK__EstadoCue__CodVe__398D8EEE">
+            <End Role="Venta" EntitySet="Venta" />
+            <End Role="EstadoCuentaPersona" EntitySet="EstadoCuentaPersona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__CodGene__2A4B4B5E" Association="SCCADEModel.FK__Persona__CodGene__2A4B4B5E">
+            <End Role="Genero" EntitySet="Genero" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__CodTipo__29572725" Association="SCCADEModel.FK__Persona__CodTipo__29572725">
+            <End Role="TipoPersona" EntitySet="TipoPersona" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Venta__CodPerson__35BCFE0A" Association="SCCADEModel.FK__Venta__CodPerson__35BCFE0A">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Venta__CodTipoPa__34C8D9D1" Association="SCCADEModel.FK__Venta__CodTipoPa__34C8D9D1">
+            <End Role="TipoPago" EntitySet="TipoPago" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <EntitySet Name="Usuarios" EntityType="SCCADEModel.Usuarios" />
+          <AssociationSet Name="FK__Usuario__CodPers__2E1BDC42" Association="SCCADEModel.FK__Usuario__CodPers__2E1BDC42">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CostosAlimentacion">
+          <Key>
+            <PropertyRef Name="CodCosto" />
+          </Key>
+          <Property Name="CodCosto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Detalle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Valor" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="FRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Estado" Type="Boolean" />
+          <Property Name="anio" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Entidad">
+          <Key>
+            <PropertyRef Name="CodEntidad" />
+          </Key>
+          <Property Name="CodEntidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreEntidad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ruc" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="tel" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="Dir" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Persona" Relationship="SCCADEModel.FK__Persona__CodEnti__2B3F6F97" FromRole="Entidad" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="EstadoCuentaPersona">
+          <Key>
+            <PropertyRef Name="CodEstadoCta" />
+          </Key>
+          <Property Name="CodEstadoCta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodVenta" Type="Int32" Nullable="false" />
+          <Property Name="CodPersona" Type="Int32" Nullable="false" />
+          <Property Name="pagos" Type="Int32" />
+          <Property Name="Valor" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="FRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Persona" Relationship="SCCADEModel.FK__EstadoCue__CodPe__38996AB5" FromRole="EstadoCuentaPersona" ToRole="Persona" />
+          <NavigationProperty Name="Venta" Relationship="SCCADEModel.FK__EstadoCue__CodVe__398D8EEE" FromRole="EstadoCuentaPersona" ToRole="Venta" />
+          <Property Name="anio" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Genero">
+          <Key>
+            <PropertyRef Name="CodGenero" />
+          </Key>
+          <Property Name="CodGenero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Abrev" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Detalle" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Persona" Relationship="SCCADEModel.FK__Persona__CodGene__2A4B4B5E" FromRole="Genero" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="HorariosAtencion">
+          <Key>
+            <PropertyRef Name="CodHoario" />
+          </Key>
+          <Property Name="CodHoario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Detalle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HorarioInicio" Type="Int32" />
+          <Property Name="HorarioFin" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="CodPersona" />
+          </Key>
+          <Property Name="CodPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodTipoPer" Type="Int32" />
+          <Property Name="NombresCompletos" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CiRuc" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="Telf" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Cel" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Dir" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CodGenero" Type="Int32" Nullable="false" />
+          <Property Name="CodEntidad" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" />
+          <NavigationProperty Name="Entidad" Relationship="SCCADEModel.FK__Persona__CodEnti__2B3F6F97" FromRole="Persona" ToRole="Entidad" />
+          <NavigationProperty Name="EstadoCuentaPersona" Relationship="SCCADEModel.FK__EstadoCue__CodPe__38996AB5" FromRole="Persona" ToRole="EstadoCuentaPersona" />
+          <NavigationProperty Name="Genero" Relationship="SCCADEModel.FK__Persona__CodGene__2A4B4B5E" FromRole="Persona" ToRole="Genero" />
+          <NavigationProperty Name="TipoPersona" Relationship="SCCADEModel.FK__Persona__CodTipo__29572725" FromRole="Persona" ToRole="TipoPersona" />
+          <NavigationProperty Name="Venta" Relationship="SCCADEModel.FK__Venta__CodPerson__35BCFE0A" FromRole="Persona" ToRole="Venta" />
+          <NavigationProperty Name="Usuarios" Relationship="SCCADEModel.FK__Usuario__CodPers__2E1BDC42" FromRole="Persona" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="TipoPago">
+          <Key>
+            <PropertyRef Name="CodTipoPago" />
+          </Key>
+          <Property Name="CodTipoPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DetTipoPago" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Venta" Relationship="SCCADEModel.FK__Venta__CodTipoPa__34C8D9D1" FromRole="TipoPago" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="TipoPersona">
+          <Key>
+            <PropertyRef Name="CodTipoPer" />
+          </Key>
+          <Property Name="CodTipoPer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Detalle" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Persona" Relationship="SCCADEModel.FK__Persona__CodTipo__29572725" FromRole="TipoPersona" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="Venta">
+          <Key>
+            <PropertyRef Name="CodVenta" />
+          </Key>
+          <Property Name="CodVenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodPersona" Type="Int32" Nullable="false" />
+          <Property Name="CodTipoPago" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="Detalle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Costo" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Total" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="FVenta" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="EstadoCuentaPersona" Relationship="SCCADEModel.FK__EstadoCue__CodVe__398D8EEE" FromRole="Venta" ToRole="EstadoCuentaPersona" />
+          <NavigationProperty Name="Persona" Relationship="SCCADEModel.FK__Venta__CodPerson__35BCFE0A" FromRole="Venta" ToRole="Persona" />
+          <NavigationProperty Name="TipoPago" Relationship="SCCADEModel.FK__Venta__CodTipoPa__34C8D9D1" FromRole="Venta" ToRole="TipoPago" />
+          <Property Name="anio" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Persona__CodEnti__2B3F6F97">
+          <End Type="SCCADEModel.Entidad" Role="Entidad" Multiplicity="1" />
+          <End Type="SCCADEModel.Persona" Role="Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entidad">
+              <PropertyRef Name="CodEntidad" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="CodEntidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EstadoCue__CodPe__38996AB5">
+          <End Type="SCCADEModel.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="SCCADEModel.EstadoCuentaPersona" Role="EstadoCuentaPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="CodPersona" />
+            </Principal>
+            <Dependent Role="EstadoCuentaPersona">
+              <PropertyRef Name="CodPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EstadoCue__CodVe__398D8EEE">
+          <End Type="SCCADEModel.Venta" Role="Venta" Multiplicity="1" />
+          <End Type="SCCADEModel.EstadoCuentaPersona" Role="EstadoCuentaPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venta">
+              <PropertyRef Name="CodVenta" />
+            </Principal>
+            <Dependent Role="EstadoCuentaPersona">
+              <PropertyRef Name="CodVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__CodGene__2A4B4B5E">
+          <End Type="SCCADEModel.Genero" Role="Genero" Multiplicity="1" />
+          <End Type="SCCADEModel.Persona" Role="Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genero">
+              <PropertyRef Name="CodGenero" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="CodGenero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__CodTipo__29572725">
+          <End Type="SCCADEModel.TipoPersona" Role="TipoPersona" Multiplicity="0..1" />
+          <End Type="SCCADEModel.Persona" Role="Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPersona">
+              <PropertyRef Name="CodTipoPer" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="CodTipoPer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Venta__CodPerson__35BCFE0A">
+          <End Type="SCCADEModel.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="SCCADEModel.Venta" Role="Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="CodPersona" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="CodPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Venta__CodTipoPa__34C8D9D1">
+          <End Type="SCCADEModel.TipoPago" Role="TipoPago" Multiplicity="1" />
+          <End Type="SCCADEModel.Venta" Role="Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPago">
+              <PropertyRef Name="CodTipoPago" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="CodTipoPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="CodUsuario" />
+          </Key>
+          <Property Name="CodUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodPersona" Type="Int32" Nullable="false" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Clave" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Persona" Relationship="SCCADEModel.FK__Usuario__CodPers__2E1BDC42" FromRole="Usuarios" ToRole="Persona" />
+          <Property Name="politica" Type="Int32" />
+        </EntityType>
+        <Association Name="FK__Usuario__CodPers__2E1BDC42">
+          <End Type="SCCADEModel.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="SCCADEModel.Usuarios" Role="Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="CodPersona" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="CodPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SCCADEModelStoreContainer" CdmEntityContainer="SCCADEEntities">
+          <EntitySetMapping Name="CostosAlimentacion">
+            <EntityTypeMapping TypeName="SCCADEModel.CostosAlimentacion">
+              <MappingFragment StoreEntitySet="CostosAlimentacion">
+                <ScalarProperty Name="anio" ColumnName="anio" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="FRegistro" ColumnName="FRegistro" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="CodCosto" ColumnName="CodCosto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entidad">
+            <EntityTypeMapping TypeName="SCCADEModel.Entidad">
+              <MappingFragment StoreEntitySet="Entidad">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Dir" ColumnName="Dir" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+                <ScalarProperty Name="ruc" ColumnName="ruc" />
+                <ScalarProperty Name="NombreEntidad" ColumnName="NombreEntidad" />
+                <ScalarProperty Name="CodEntidad" ColumnName="CodEntidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EstadoCuentaPersona">
+            <EntityTypeMapping TypeName="SCCADEModel.EstadoCuentaPersona">
+              <MappingFragment StoreEntitySet="EstadoCuentaPersona">
+                <ScalarProperty Name="anio" ColumnName="anio" />
+                <ScalarProperty Name="FRegistro" ColumnName="FRegistro" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="pagos" ColumnName="pagos" />
+                <ScalarProperty Name="CodPersona" ColumnName="CodPersona" />
+                <ScalarProperty Name="CodVenta" ColumnName="CodVenta" />
+                <ScalarProperty Name="CodEstadoCta" ColumnName="CodEstadoCta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genero">
+            <EntityTypeMapping TypeName="SCCADEModel.Genero">
+              <MappingFragment StoreEntitySet="Genero">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="Abrev" ColumnName="Abrev" />
+                <ScalarProperty Name="CodGenero" ColumnName="CodGenero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HorariosAtencion">
+            <EntityTypeMapping TypeName="SCCADEModel.HorariosAtencion">
+              <MappingFragment StoreEntitySet="HorariosAtencion">
+                <ScalarProperty Name="HorarioFin" ColumnName="HorarioFin" />
+                <ScalarProperty Name="HorarioInicio" ColumnName="HorarioInicio" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="CodHoario" ColumnName="CodHoario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persona">
+            <EntityTypeMapping TypeName="SCCADEModel.Persona">
+              <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="CodEntidad" ColumnName="CodEntidad" />
+                <ScalarProperty Name="CodGenero" ColumnName="CodGenero" />
+                <ScalarProperty Name="Dir" ColumnName="Dir" />
+                <ScalarProperty Name="Cel" ColumnName="Cel" />
+                <ScalarProperty Name="Telf" ColumnName="Telf" />
+                <ScalarProperty Name="CiRuc" ColumnName="CiRuc" />
+                <ScalarProperty Name="NombresCompletos" ColumnName="NombresCompletos" />
+                <ScalarProperty Name="CodTipoPer" ColumnName="CodTipoPer" />
+                <ScalarProperty Name="CodPersona" ColumnName="CodPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoPago">
+            <EntityTypeMapping TypeName="SCCADEModel.TipoPago">
+              <MappingFragment StoreEntitySet="TipoPago">
+                <ScalarProperty Name="DetTipoPago" ColumnName="DetTipoPago" />
+                <ScalarProperty Name="CodTipoPago" ColumnName="CodTipoPago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoPersona">
+            <EntityTypeMapping TypeName="SCCADEModel.TipoPersona">
+              <MappingFragment StoreEntitySet="TipoPersona">
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="CodTipoPer" ColumnName="CodTipoPer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Venta">
+            <EntityTypeMapping TypeName="SCCADEModel.Venta">
+              <MappingFragment StoreEntitySet="Venta">
+                <ScalarProperty Name="anio" ColumnName="anio" />
+                <ScalarProperty Name="FVenta" ColumnName="FVenta" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="CodTipoPago" ColumnName="CodTipoPago" />
+                <ScalarProperty Name="CodPersona" ColumnName="CodPersona" />
+                <ScalarProperty Name="CodVenta" ColumnName="CodVenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="SCCADEModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="politica" ColumnName="politica" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="FRegistro" ColumnName="FRegistro" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="CodPersona" ColumnName="CodPersona" />
+                <ScalarProperty Name="CodUsuario" ColumnName="CodUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
