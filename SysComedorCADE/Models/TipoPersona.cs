@@ -22,6 +22,7 @@ namespace SysComedorCADE.Models
     
         public int CodTipoPer { get; set; }
         public string Detalle { get; set; }
+        public Nullable<int> CodEntidad { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Persona> Persona { get; set; }

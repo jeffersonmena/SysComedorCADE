@@ -137,6 +137,7 @@
     <Property Name="CodTipoPer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Detalle" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Persona" Relationship="SCCADEModel.FK__Persona__CodTipo__29572725" FromRole="TipoPersona" ToRole="Persona" />
+    <Property Name="CodEntidad" Type="Int32" />
   </EntityType>
   <EntityType Name="Venta">
     <Key>

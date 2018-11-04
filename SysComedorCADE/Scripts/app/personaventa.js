@@ -1,7 +1,32 @@
 ﻿var app = angular.module('AppVenta', []);
 app.controller('CtrlVenta', function ($scope, $http, $window) {
 
+    $scope.hora = new Date().getHours().toString()
+    $scope.minutos = new Date().getMinutes().toString();
+    $scope.segundo = new Date().getSeconds().toString();
+    $scope.date = new Date().getTime();
 
+    $scope.horasalida = $scope.hora+":"+$scope.minutos+":"+$scope.segundo;
+    $scope.dt = [];
+    $scope.horarioatencion = function () {
+        var hora = $scope.horasalida.toString();
+        var hdinicio = "05:00:00";
+        var hdfin = "11:30:00";
+        if (hora > hdinicio && hora < hdfin) {
+            $scope.dt.detalle = "Desayuno/s";
+        }
+        if (hora > '11:31:00' && hora <'16:30:00') {
+             $scope.dt.detalle = "Almuerzo/s";
+        }
+        if (hora >'16:31:00' && hora <'20:30:00') {
+             $scope.dt.detalle = "Cena/s";
+        }
+        if (hora >"20:06:00" && hora <'04:59:00') {
+             $scope.dt.detalle = "Extracurricular/s";
+        }
+
+    }
+    $scope.horarioatencion();
 
     $("#idbuscar").keyup(function () {
         var bus = $("#idbuscar").val();
@@ -11,6 +36,7 @@ app.controller('CtrlVenta', function ($scope, $http, $window) {
     $scope.busca = function (e) {
         $http.post("/Persona/BusPersona", { ci: e }).success(function (result) {
             $scope.perventa = result;
+            $scope.horarioatencion();
             $("#btnmodalvende").trigger('click');
         }).error(function (result) {
             console.log(result);
@@ -65,6 +91,8 @@ app.controller('CtrlVenta', function ($scope, $http, $window) {
         });
 
     });
+
+    
 
     $scope.perventa = {};
     $scope.buscarp = [];

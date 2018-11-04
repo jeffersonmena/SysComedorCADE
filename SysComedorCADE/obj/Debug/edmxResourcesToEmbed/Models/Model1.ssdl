@@ -81,6 +81,7 @@
     </Key>
     <Property Name="CodTipoPer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Detalle" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CodEntidad" Type="int" />
   </EntityType>
   <EntityType Name="Usuarios">
     <Key>

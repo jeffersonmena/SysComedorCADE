@@ -86,6 +86,7 @@
     <EntitySetMapping Name="TipoPersona">
       <EntityTypeMapping TypeName="SCCADEModel.TipoPersona">
         <MappingFragment StoreEntitySet="TipoPersona">
+          <ScalarProperty Name="CodEntidad" ColumnName="CodEntidad" />
           <ScalarProperty Name="Detalle" ColumnName="Detalle" />
           <ScalarProperty Name="CodTipoPer" ColumnName="CodTipoPer" />
         </MappingFragment>

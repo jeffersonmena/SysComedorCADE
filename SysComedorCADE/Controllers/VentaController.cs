@@ -78,6 +78,7 @@ namespace SysComedorCADE.Controllers
                              && v.CodTipoPago == vm.CodTipoPago
                              && v.anio == vm.anio
                              && v.usuario == vm.usuario
+                             && v.FVenta == vm.FVenta
                              select v).FirstOrDefault();
 
                 EstadoCuentaPersona ecp = new EstadoCuentaPersona();
