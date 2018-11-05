@@ -38,6 +38,7 @@
           <Property Name="pagos" Type="int" />
           <Property Name="Valor" Type="money" Nullable="false" />
           <Property Name="FRegistro" Type="datetime" Nullable="false" />
+          <Property Name="usuario" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Genero">
           <Key>
@@ -45,7 +46,7 @@
           </Key>
           <Property Name="CodGenero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Abrev" Type="nvarchar" MaxLength="1" Nullable="false" />
-          <Property Name="Detalle" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Detalle" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="Estado" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="HorariosAtencion">
@@ -111,6 +112,7 @@
           <Property Name="Costo" Type="money" Nullable="false" />
           <Property Name="Total" Type="money" Nullable="false" />
           <Property Name="FVenta" Type="datetime" Nullable="false" />
+          <Property Name="usuario" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK__EstadoCue__CodPe__38996AB5">
           <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
@@ -336,6 +338,7 @@
           <NavigationProperty Name="Persona" Relationship="SCCADEModel.FK__EstadoCue__CodPe__38996AB5" FromRole="EstadoCuentaPersona" ToRole="Persona" />
           <NavigationProperty Name="Venta" Relationship="SCCADEModel.FK__EstadoCue__CodVe__398D8EEE" FromRole="EstadoCuentaPersona" ToRole="Venta" />
           <Property Name="anio" Type="Int32" Nullable="false" />
+          <Property Name="usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Genero">
           <Key>
@@ -343,7 +346,7 @@
           </Key>
           <Property Name="CodGenero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Abrev" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="Detalle" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Detalle" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Persona" Relationship="SCCADEModel.FK__Persona__CodGene__2A4B4B5E" FromRole="Genero" ToRole="Persona" />
         </EntityType>
@@ -409,6 +412,7 @@
           <NavigationProperty Name="Persona" Relationship="SCCADEModel.FK__Venta__CodPerson__35BCFE0A" FromRole="Venta" ToRole="Persona" />
           <NavigationProperty Name="TipoPago" Relationship="SCCADEModel.FK__Venta__CodTipoPa__34C8D9D1" FromRole="Venta" ToRole="TipoPago" />
           <Property Name="anio" Type="Int32" Nullable="false" />
+          <Property Name="usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK__Persona__CodEnti__2B3F6F97">
           <End Type="SCCADEModel.Entidad" Role="Entidad" Multiplicity="1" />
@@ -552,6 +556,7 @@
           <EntitySetMapping Name="EstadoCuentaPersona">
             <EntityTypeMapping TypeName="SCCADEModel.EstadoCuentaPersona">
               <MappingFragment StoreEntitySet="EstadoCuentaPersona">
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
                 <ScalarProperty Name="anio" ColumnName="anio" />
                 <ScalarProperty Name="FRegistro" ColumnName="FRegistro" />
                 <ScalarProperty Name="Valor" ColumnName="Valor" />
@@ -617,6 +622,7 @@
           <EntitySetMapping Name="Venta">
             <EntityTypeMapping TypeName="SCCADEModel.Venta">
               <MappingFragment StoreEntitySet="Venta">
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
                 <ScalarProperty Name="anio" ColumnName="anio" />
                 <ScalarProperty Name="FVenta" ColumnName="FVenta" />
                 <ScalarProperty Name="Total" ColumnName="Total" />

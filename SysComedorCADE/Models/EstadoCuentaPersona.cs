@@ -21,6 +21,7 @@ namespace SysComedorCADE.Models
         public decimal Valor { get; set; }
         public System.DateTime FRegistro { get; set; }
         public int anio { get; set; }
+        public string usuario { get; set; }
     
         public virtual Persona Persona { get; set; }
         public virtual Venta Venta { get; set; }

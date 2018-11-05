@@ -1,0 +1,66 @@
+﻿@model SysComedorCADE.Models.EstadoCuentaPersona
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EstadoCuentaPersona</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pagos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pagos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FRegistro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FRegistro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.anio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.anio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Persona.NombresCompletos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Persona.NombresCompletos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Venta.Detalle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Venta.Detalle)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CodEstadoCta }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

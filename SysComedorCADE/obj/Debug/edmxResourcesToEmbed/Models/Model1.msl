@@ -28,6 +28,7 @@
     <EntitySetMapping Name="EstadoCuentaPersona">
       <EntityTypeMapping TypeName="SCCADEModel.EstadoCuentaPersona">
         <MappingFragment StoreEntitySet="EstadoCuentaPersona">
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
           <ScalarProperty Name="anio" ColumnName="anio" />
           <ScalarProperty Name="FRegistro" ColumnName="FRegistro" />
           <ScalarProperty Name="Valor" ColumnName="Valor" />
@@ -93,6 +94,7 @@
     <EntitySetMapping Name="Venta">
       <EntityTypeMapping TypeName="SCCADEModel.Venta">
         <MappingFragment StoreEntitySet="Venta">
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
           <ScalarProperty Name="anio" ColumnName="anio" />
           <ScalarProperty Name="FVenta" ColumnName="FVenta" />
           <ScalarProperty Name="Total" ColumnName="Total" />

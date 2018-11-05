@@ -33,6 +33,7 @@
     <Property Name="pagos" Type="int" />
     <Property Name="Valor" Type="money" Nullable="false" />
     <Property Name="FRegistro" Type="datetime" Nullable="false" />
+    <Property Name="usuario" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Genero">
     <Key>
@@ -40,7 +41,7 @@
     </Key>
     <Property Name="CodGenero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Abrev" Type="nvarchar" MaxLength="1" Nullable="false" />
-    <Property Name="Detalle" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Detalle" Type="nvarchar" MaxLength="15" Nullable="false" />
     <Property Name="Estado" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="HorariosAtencion">
@@ -106,6 +107,7 @@
     <Property Name="Costo" Type="money" Nullable="false" />
     <Property Name="Total" Type="money" Nullable="false" />
     <Property Name="FVenta" Type="datetime" Nullable="false" />
+    <Property Name="usuario" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <Association Name="FK__EstadoCue__CodPe__38996AB5">
     <End Role="Persona" Type="Self.Persona" Multiplicity="1" />

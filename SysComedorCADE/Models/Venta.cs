@@ -29,6 +29,7 @@ namespace SysComedorCADE.Models
         public decimal Total { get; set; }
         public System.DateTime FVenta { get; set; }
         public int anio { get; set; }
+        public string usuario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EstadoCuentaPersona> EstadoCuentaPersona { get; set; }

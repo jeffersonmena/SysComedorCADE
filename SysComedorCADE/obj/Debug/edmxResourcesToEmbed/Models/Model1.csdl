@@ -80,6 +80,7 @@
     <NavigationProperty Name="Persona" Relationship="SCCADEModel.FK__EstadoCue__CodPe__38996AB5" FromRole="EstadoCuentaPersona" ToRole="Persona" />
     <NavigationProperty Name="Venta" Relationship="SCCADEModel.FK__EstadoCue__CodVe__398D8EEE" FromRole="EstadoCuentaPersona" ToRole="Venta" />
     <Property Name="anio" Type="Int32" Nullable="false" />
+    <Property Name="usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Genero">
     <Key>
@@ -87,7 +88,7 @@
     </Key>
     <Property Name="CodGenero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Abrev" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
-    <Property Name="Detalle" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Detalle" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
     <Property Name="Estado" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Persona" Relationship="SCCADEModel.FK__Persona__CodGene__2A4B4B5E" FromRole="Genero" ToRole="Persona" />
   </EntityType>
@@ -153,6 +154,7 @@
     <NavigationProperty Name="Persona" Relationship="SCCADEModel.FK__Venta__CodPerson__35BCFE0A" FromRole="Venta" ToRole="Persona" />
     <NavigationProperty Name="TipoPago" Relationship="SCCADEModel.FK__Venta__CodTipoPa__34C8D9D1" FromRole="Venta" ToRole="TipoPago" />
     <Property Name="anio" Type="Int32" Nullable="false" />
+    <Property Name="usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK__Persona__CodEnti__2B3F6F97">
     <End Type="SCCADEModel.Entidad" Role="Entidad" Multiplicity="1" />

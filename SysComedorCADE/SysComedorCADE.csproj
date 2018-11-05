@@ -200,6 +200,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CostosAlimentacionController.cs" />
     <Compile Include="Controllers\EntidadController.cs" />
+    <Compile Include="Controllers\EstadoCuentaPersonaController.cs" />
     <Compile Include="Controllers\GeneroController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -207,10 +208,12 @@
     <Compile Include="Controllers\TipoPagoController.cs" />
     <Compile Include="Controllers\TipoPersonaController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Controllers\VentaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CostosModel.cs" />
     <Compile Include="Models\CostosAlimentacion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -246,6 +249,7 @@
     <Compile Include="Models\Persona.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PersonaModel.cs" />
     <Compile Include="Models\TipoPago.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -258,6 +262,7 @@
     <Compile Include="Models\Venta.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\VentaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -303,6 +308,8 @@
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\app\personaventa.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -404,6 +411,16 @@
     <Content Include="Views\Persona\Details.cshtml" />
     <Content Include="Views\Persona\Edit.cshtml" />
     <Content Include="Views\Persona\Index.cshtml" />
+    <Content Include="Views\EstadoCuentaPersona\Create.cshtml" />
+    <Content Include="Views\EstadoCuentaPersona\Delete.cshtml" />
+    <Content Include="Views\EstadoCuentaPersona\Details.cshtml" />
+    <Content Include="Views\EstadoCuentaPersona\Edit.cshtml" />
+    <Content Include="Views\EstadoCuentaPersona\Index.cshtml" />
+    <Content Include="Views\Venta\Create.cshtml" />
+    <Content Include="Views\Venta\Delete.cshtml" />
+    <Content Include="Views\Venta\Details.cshtml" />
+    <Content Include="Views\Venta\Edit.cshtml" />
+    <Content Include="Views\Venta\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

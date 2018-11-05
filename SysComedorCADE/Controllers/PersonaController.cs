@@ -21,6 +21,32 @@ namespace SysComedorCADE.Controllers
             return View(persona.ToList());
         }
 
+        public JsonResult BusPersona(string ci)
+        {
+
+            
+            var per = (from p in db.Persona
+                       where p.CiRuc.Equals(ci)
+                       select new PersonaModel{
+                           CodPersona = p.CodPersona,
+                           CodTipoPer = p.CodTipoPer,
+                            NombresCompletos = p.NombresCompletos,
+                            CiRuc = p.CiRuc,
+                            Telf = p.Telf,
+                            Cel = p.Cel,
+                            Dir = p.Dir,
+                            CodGenero = p.CodGenero,
+                            CodEntidad = p.CodEntidad,
+                            Estado = p.Estado   
+                       }).FirstOrDefault();
+
+                return Json(per,JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
+
         // GET: Persona/Details/5
         public ActionResult Details(int? id)
         {

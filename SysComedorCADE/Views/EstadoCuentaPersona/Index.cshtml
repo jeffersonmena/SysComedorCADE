@@ -1,0 +1,63 @@
+﻿@model IEnumerable<SysComedorCADE.Models.EstadoCuentaPersona>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.pagos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FRegistro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.anio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Persona.NombresCompletos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Venta.Detalle)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.pagos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Valor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FRegistro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.anio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Persona.NombresCompletos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Venta.Detalle)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CodEstadoCta }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CodEstadoCta }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CodEstadoCta })
+        </td>
+    </tr>
+}
+
+</table>

@@ -55,7 +55,7 @@ namespace SysComedorCADE.Controllers
                     var userlog = (from u in db.Usuarios 
                                     where u.Usuario==usu && u.Clave ==pss && u.Estado ==true
                                     select u).FirstOrDefault();
-                    var anio = DateTime.Now;
+                    var anio = DateTime.Now.Year;
 
                     Session["politica"] = userlog.politica;
                     
