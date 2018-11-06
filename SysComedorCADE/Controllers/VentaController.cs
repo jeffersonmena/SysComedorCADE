@@ -64,33 +64,38 @@ namespace SysComedorCADE.Controllers
             vm.Detalle = des;
             vm.Costo = vunit;
             vm.Total = vt;
-            vm.FVenta = DateTime.Now;
+            vm.FVenta = DateTime.Now
             vm.usuario = usuVenta;
             db.Venta.Add(vm);
             db.SaveChanges();
 
             /*TIPO PAGO ::  CUENTAS*/
             /*Solo cuando sea una venta que pase a la CUENTA y no al Contado */
+            EstadoCuentaPersona e = new EstadoCuentaPersona();
             if (vm.CodTipoPago == 1)
             {
+
+
+                DateTime fecha = vm.FVenta.ToString('');
                 var venta = (from v in db.Venta
                              where v.CodPersona == vm.CodPersona
                              && v.CodTipoPago == vm.CodTipoPago
                              && v.anio == vm.anio
-                             && v.usuario == vm.usuario
-                             && v.FVenta == vm.FVenta
+                             && v.usuario == vm.usuario 
+                             && v.FVenta == fecha
                              select v).FirstOrDefault();
 
-                EstadoCuentaPersona ecp = new EstadoCuentaPersona();
-                ecp.anio = venta.anio;
-                ecp.CodVenta = venta.CodVenta;
-                ecp.CodPersona = venta.CodPersona;
+
+
+                e.anio = venta.anio;
+                e.CodVenta = venta.CodVenta;
+                e.CodPersona = venta.CodPersona;
                 //guarda 1 en pagos cuando es deuda Y el valor con positivo
-                ecp.pagos = 1;
-                ecp.Valor = venta.Total;
-                ecp.FRegistro = venta.FVenta;
-                ecp.usuario = venta.usuario;
-                db.EstadoCuentaPersona.Add(ecp);
+                e.pagos = 1;
+                e.Valor = venta.Total;
+                e.FRegistro = venta.FVenta;
+                e.usuario = venta.usuario;
+                db.EstadoCuentaPersona.Add(e);
                 db.SaveChanges();
                 sms = 1;
             }
@@ -102,7 +107,10 @@ namespace SysComedorCADE.Controllers
             return Json(sms, JsonRequestBehavior.AllowGet);
         }
 
-
+        public JsonResult GrabaEstadoCuentPer()
+        {
+            return Json(JsonRequestBehavior.AllowGet);
+        }
 
         // POST: Venta/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
