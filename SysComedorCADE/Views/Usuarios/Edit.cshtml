@@ -4,21 +4,20 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
-
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Usuarios</h4>
+        <h4><span class="fa fa-edit"> Editar Usuario</span></h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.CodUsuario)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CodPersona, "CodPersona", htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="col-md-2">
+                Persona:
+            </span>
             <div class="col-md-10">
                 @Html.DropDownList("CodPersona", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CodPersona, "", new { @class = "text-danger" })
@@ -26,7 +25,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Usuario, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="col-md-2">
+                Usuario:
+            </span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
@@ -34,7 +35,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Clave, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="col-md-2">
+                Contraseña:
+            </span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Clave, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Clave, "", new { @class = "text-danger" })
@@ -42,7 +45,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.FRegistro, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="col-md-2">
+                Fecha de Registro:
+            </span>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.FRegistro, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FRegistro, "", new { @class = "text-danger" })
@@ -50,7 +55,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="col-md-2">
+                Estado:
+            </span>
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.Estado)
@@ -60,17 +67,13 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+            <div class="col-md-offset-2 col-md-10"><br />
+                <input type="submit" value="Guardar" class="btn btn-success" />
+                <a href="@Url.Action("Index","Usuarios",null)"><button type="button" class="btn btn-warning"> Regresar</button></a><br />
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

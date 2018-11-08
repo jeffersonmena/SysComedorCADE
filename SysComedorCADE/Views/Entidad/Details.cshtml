@@ -4,10 +4,8 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>Entidad</h4>
+    <h4>Detalles de la Entidad</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -53,6 +51,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CodEntidad }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a href="@Url.Action("Edit","Entidad",new { id = Model.CodEntidad })"><button type="button" class="btn btn-success btn-xs"><span class="fa fa-edit"> Editar</span></button></a>
+    <a href="@Url.Action("Index","Entidad",null)"><input value="Regresar" type="button" class="btn btn-warning btn-xs" /></a>                 
 </p>

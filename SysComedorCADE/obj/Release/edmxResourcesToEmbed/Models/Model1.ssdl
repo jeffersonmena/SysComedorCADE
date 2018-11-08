@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SCCADEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CostosAlimentacion">
+    <Key>
+      <PropertyRef Name="CodCosto" />
+    </Key>
+    <Property Name="CodCosto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="anio" Type="int" Nullable="false" />
+    <Property Name="Detalle" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Valor" Type="money" Nullable="false" />
+    <Property Name="FRegistro" Type="datetime" Nullable="false" />
+    <Property Name="Estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="Entidad">
+    <Key>
+      <PropertyRef Name="CodEntidad" />
+    </Key>
+    <Property Name="CodEntidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreEntidad" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ruc" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="tel" Type="nvarchar" MaxLength="13" />
+    <Property Name="Dir" Type="nvarchar" MaxLength="200" />
+    <Property Name="Estado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EstadoCuentaPersona">
+    <Key>
+      <PropertyRef Name="CodEstadoCta" />
+    </Key>
+    <Property Name="CodEstadoCta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="anio" Type="int" Nullable="false" />
+    <Property Name="CodVenta" Type="int" Nullable="false" />
+    <Property Name="CodPersona" Type="int" Nullable="false" />
+    <Property Name="pagos" Type="int" />
+    <Property Name="Valor" Type="money" Nullable="false" />
+    <Property Name="FRegistro" Type="datetime" Nullable="false" />
+    <Property Name="usuario" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Genero">
+    <Key>
+      <PropertyRef Name="CodGenero" />
+    </Key>
+    <Property Name="CodGenero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Abrev" Type="nvarchar" MaxLength="1" Nullable="false" />
+    <Property Name="Detalle" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="Estado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HorariosAtencion">
+    <Key>
+      <PropertyRef Name="CodHoario" />
+    </Key>
+    <Property Name="CodHoario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Detalle" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="HorarioInicio" Type="int" />
+    <Property Name="HorarioFin" Type="int" />
+  </EntityType>
+  <EntityType Name="Persona">
+    <Key>
+      <PropertyRef Name="CodPersona" />
+    </Key>
+    <Property Name="CodPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CodTipoPer" Type="int" />
+    <Property Name="NombresCompletos" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CiRuc" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="Telf" Type="nvarchar" MaxLength="15" />
+    <Property Name="Cel" Type="nvarchar" MaxLength="15" />
+    <Property Name="Dir" Type="nvarchar" MaxLength="100" />
+    <Property Name="CodGenero" Type="int" Nullable="false" />
+    <Property Name="CodEntidad" Type="int" Nullable="false" />
+    <Property Name="Estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="TipoPago">
+    <Key>
+      <PropertyRef Name="CodTipoPago" />
+    </Key>
+    <Property Name="CodTipoPago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DetTipoPago" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoPersona">
+    <Key>
+      <PropertyRef Name="CodTipoPer" />
+    </Key>
+    <Property Name="CodTipoPer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Detalle" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CodEntidad" Type="int" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="CodUsuario" />
+    </Key>
+    <Property Name="CodUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CodPersona" Type="int" Nullable="false" />
+    <Property Name="Usuario" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Clave" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FRegistro" Type="datetime" Nullable="false" />
+    <Property Name="politica" Type="int" />
+    <Property Name="Estado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Venta">
+    <Key>
+      <PropertyRef Name="CodVenta" />
+    </Key>
+    <Property Name="CodVenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="anio" Type="int" Nullable="false" />
+    <Property Name="CodPersona" Type="int" Nullable="false" />
+    <Property Name="CodTipoPago" Type="int" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Detalle" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Costo" Type="money" Nullable="false" />
+    <Property Name="Total" Type="money" Nullable="false" />
+    <Property Name="FVenta" Type="datetime" Nullable="false" />
+    <Property Name="usuario" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__EstadoCue__CodPe__38996AB5">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+    <End Role="EstadoCuentaPersona" Type="Self.EstadoCuentaPersona" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="CodPersona" />
+      </Principal>
+      <Dependent Role="EstadoCuentaPersona">
+        <PropertyRef Name="CodPersona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EstadoCue__CodVe__398D8EEE">
+    <End Role="Venta" Type="Self.Venta" Multiplicity="1" />
+    <End Role="EstadoCuentaPersona" Type="Self.EstadoCuentaPersona" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta">
+        <PropertyRef Name="CodVenta" />
+      </Principal>
+      <Dependent Role="EstadoCuentaPersona">
+        <PropertyRef Name="CodVenta" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Persona__CodEnti__2B3F6F97">
+    <End Role="Entidad" Type="Self.Entidad" Multiplicity="1" />
+    <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entidad">
+        <PropertyRef Name="CodEntidad" />
+      </Principal>
+      <Dependent Role="Persona">
+        <PropertyRef Name="CodEntidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Persona__CodGene__2A4B4B5E">
+    <End Role="Genero" Type="Self.Genero" Multiplicity="1" />
+    <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genero">
+        <PropertyRef Name="CodGenero" />
+      </Principal>
+      <Dependent Role="Persona">
+        <PropertyRef Name="CodGenero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Persona__CodTipo__29572725">
+    <End Role="TipoPersona" Type="Self.TipoPersona" Multiplicity="0..1" />
+    <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoPersona">
+        <PropertyRef Name="CodTipoPer" />
+      </Principal>
+      <Dependent Role="Persona">
+        <PropertyRef Name="CodTipoPer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Usuario__CodPers__2E1BDC42">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="CodPersona" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="CodPersona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Venta__CodPerson__35BCFE0A">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+    <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="CodPersona" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="CodPersona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Venta__CodTipoPa__34C8D9D1">
+    <End Role="TipoPago" Type="Self.TipoPago" Multiplicity="1" />
+    <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoPago">
+        <PropertyRef Name="CodTipoPago" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="CodTipoPago" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SCCADEModelStoreContainer">
+    <EntitySet Name="CostosAlimentacion" EntityType="Self.CostosAlimentacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Entidad" EntityType="Self.Entidad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EstadoCuentaPersona" EntityType="Self.EstadoCuentaPersona" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Genero" EntityType="Self.Genero" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HorariosAtencion" EntityType="Self.HorariosAtencion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoPago" EntityType="Self.TipoPago" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoPersona" EntityType="Self.TipoPersona" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Venta" EntityType="Self.Venta" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__EstadoCue__CodPe__38996AB5" Association="Self.FK__EstadoCue__CodPe__38996AB5">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="EstadoCuentaPersona" EntitySet="EstadoCuentaPersona" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EstadoCue__CodVe__398D8EEE" Association="Self.FK__EstadoCue__CodVe__398D8EEE">
+      <End Role="Venta" EntitySet="Venta" />
+      <End Role="EstadoCuentaPersona" EntitySet="EstadoCuentaPersona" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Persona__CodEnti__2B3F6F97" Association="Self.FK__Persona__CodEnti__2B3F6F97">
+      <End Role="Entidad" EntitySet="Entidad" />
+      <End Role="Persona" EntitySet="Persona" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Persona__CodGene__2A4B4B5E" Association="Self.FK__Persona__CodGene__2A4B4B5E">
+      <End Role="Genero" EntitySet="Genero" />
+      <End Role="Persona" EntitySet="Persona" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Persona__CodTipo__29572725" Association="Self.FK__Persona__CodTipo__29572725">
+      <End Role="TipoPersona" EntitySet="TipoPersona" />
+      <End Role="Persona" EntitySet="Persona" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Usuario__CodPers__2E1BDC42" Association="Self.FK__Usuario__CodPers__2E1BDC42">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Venta__CodPerson__35BCFE0A" Association="Self.FK__Venta__CodPerson__35BCFE0A">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Venta" EntitySet="Venta" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Venta__CodTipoPa__34C8D9D1" Association="Self.FK__Venta__CodTipoPa__34C8D9D1">
+      <End Role="TipoPago" EntitySet="TipoPago" />
+      <End Role="Venta" EntitySet="Venta" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

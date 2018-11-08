@@ -20,6 +20,108 @@ namespace SysComedorCADE.Controllers
             return View(db.CostosAlimentacion.ToList());
         }
 
+        public JsonResult listar()
+        {
+            var list = (from ca in db.CostosAlimentacion select ca).ToList();
+
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult GuardaServicio(CostosModel costos)
+        {
+            var sms = 0;
+            var anio = Convert.ToInt32(Session["Gestion"]);
+            var fechaventa = DateTime.Now;
+            try
+            {
+
+
+                if (ModelState.IsValid)
+                {  
+                  
+                        /*Crear Nuevo*/
+                        CostosAlimentacion ca = new CostosAlimentacion();
+                        ca.anio = anio;
+                        ca.Detalle = costos.Detalle;
+                        ca.Valor = costos.Valor;
+                        ca.FRegistro = fechaventa;
+                        ca.Estado = costos.Estado;
+
+                        db.CostosAlimentacion.Add(ca);
+                        db.SaveChanges();
+                        sms = 1;
+           
+
+                }
+            }
+            catch
+            {
+                sms = 2;
+            }
+            return Json(sms, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult EliminaServicio(int id)
+        {
+            var sms = 0;
+            try
+            {
+                if (id > 0)
+                {
+                    var servicio = db.CostosAlimentacion.Find(id);
+                    db.CostosAlimentacion.Remove(servicio);
+                    db.SaveChanges();
+                    sms = 1;
+                }
+            }
+            catch
+            {
+                //ASIGNA 2 EN CASO DE ERROR AL ELIMINAR
+                sms = 2;
+            }
+            return Json(sms, JsonRequestBehavior.AllowGet);
+        }
+
+        //POST
+        public JsonResult EditaServicio(CostosModel servicio)
+        {
+            var sms = 0;
+            var anio = Convert.ToInt32(Session["Gestion"]);
+            var fechaventa = DateTime.Now;
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    /*Editar Existente*/
+                    if (servicio.CodCosto > 0)
+                    {
+                        CostosAlimentacion cEdit = new CostosAlimentacion();
+                        cEdit.CodCosto = servicio.CodCosto;
+                        cEdit.anio = anio;
+                        cEdit.Detalle = servicio.Detalle;
+                        cEdit.Valor = servicio.Valor;
+                        cEdit.FRegistro = fechaventa;
+                        cEdit.Estado = servicio.Estado;
+                        db.Entry(cEdit).State = EntityState.Modified;
+                        db.SaveChanges();
+                        /*Asigna 3 si se editó con exitos exit*/
+                        sms = 1;
+                    }
+                }
+            }
+            catch
+            {
+                //ASIGNA 2 EN CASO DE ERROR AL EDITAR
+                sms = 2;
+            }
+            return Json(sms, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
         // GET: CostosAlimentacion/Details/5
         public ActionResult Details(int? id)
         {

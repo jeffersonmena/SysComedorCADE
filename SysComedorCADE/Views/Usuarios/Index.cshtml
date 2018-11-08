@@ -4,11 +4,11 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<a href="@Url.Action("Create","Usuarios",null)"><button type="button" class="btn btn-primary"><span class="fa fa-user"></span> Nuevo</button></a><br />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<center>
+    <h4>Lista de Usuarios</h4>
+</center>
 <table class="table">
     <tr>
         <th>
@@ -47,9 +47,9 @@
             @Html.DisplayFor(modelItem => item.Persona.NombresCompletos)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CodUsuario }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CodUsuario }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CodUsuario })
+            <a href="@Url.Action("Edit","Usuarios",new { id = item.CodUsuario })"><button type="button" class="btn btn-success btn-xs"><span class="fa fa-edit"></span></button></a>
+            <a href="@Url.Action("Delete","Usuarios",new { id = item.CodUsuario })"><button type="button" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span></button></a>
+            <a href="@Url.Action("Details","Usuarios",new { id = item.CodUsuario })"><button type="button" class="btn btn-warning btn-xs"><span class="fa fa-list"></span></button></a>
         </td>
     </tr>
 }

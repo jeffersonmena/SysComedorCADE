@@ -15,12 +15,12 @@ namespace SysComedorCADE.Models
     public partial class EstadoCuentaPersona
     {
         public int CodEstadoCta { get; set; }
+        public int anio { get; set; }
         public int CodVenta { get; set; }
         public int CodPersona { get; set; }
         public Nullable<int> pagos { get; set; }
         public decimal Valor { get; set; }
         public System.DateTime FRegistro { get; set; }
-        public int anio { get; set; }
         public string usuario { get; set; }
     
         public virtual Persona Persona { get; set; }

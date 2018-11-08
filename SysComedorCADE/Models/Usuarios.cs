@@ -19,8 +19,8 @@ namespace SysComedorCADE.Models
         public string Usuario { get; set; }
         public string Clave { get; set; }
         public System.DateTime FRegistro { get; set; }
-        public bool Estado { get; set; }
         public Nullable<int> politica { get; set; }
+        public bool Estado { get; set; }
     
         public virtual Persona Persona { get; set; }
     }

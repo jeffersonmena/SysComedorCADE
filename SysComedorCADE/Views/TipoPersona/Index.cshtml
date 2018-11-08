@@ -4,30 +4,36 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Detalle)
-        </th>
-        <th></th>
-    </tr>
+<a href="@Url.Action("Create","TipoPersona",null)"><button type="button" class="btn btn-primary btn-xs"><span class="fa fa-plus"> Nuevo</span></button></a><br />
+<center>
+    <h4>Lista de Tipo de Personas</h4>
+</center>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Detalle)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CodTipoPer }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CodTipoPer }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CodTipoPer })
-        </td>
-    </tr>
-}
+<div class="table table-responsive">
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Detalle)
+            </th>
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Detalle)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit","TipoPersona",new { id = item.CodTipoPer })"><button type="button" class="btn btn-success btn-xs"><span class="fa fa-edit"></span></button></a>
+                    <a href="@Url.Action("Delete","TipoPersona",new { id = item.CodTipoPer })"><button type="button" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span></button></a>
+                    <a href="@Url.Action("Details","TipoPersona",new { id = item.CodTipoPer })"><button type="button" class="btn btn-warning btn-xs"><span class="fa fa-list"></span></button></a>
+                </td>
+
+            </tr>
+        }
+
+    </table>
+</div>
+

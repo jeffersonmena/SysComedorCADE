@@ -4,55 +4,57 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="panel panel-info">
+    <div class="panel panel-heading">
+        <h4><span class="fa fa-user"> Detalles de Usuario</span></h4>
+        <hr />
+    </div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Usuario)
+            </dt>
 
-<div>
-    <h4>Usuarios</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Usuario)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Usuario)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Usuario)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Clave)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Clave)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Clave)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Clave)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FRegistro)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FRegistro)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FRegistro)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FRegistro)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Estado)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Estado)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Estado)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Estado)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Persona.NombresCompletos)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Persona.NombresCompletos)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Persona.NombresCompletos)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Persona.NombresCompletos)
-        </dd>
-
-    </dl>
+        </dl>
+    </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CodUsuario }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a href="@Url.Action("Edit","Usuarios",new { id = Model.CodUsuario })"><button type="button" class="btn btn-success btn-xs"><span class="fa fa-edit"> Editar</span></button></a>
+    <a href="@Url.Action("Index","Usuarios",null)"><input value="Regresar" type="button" class="btn btn-warning btn-xs" /></a>      
 </p>

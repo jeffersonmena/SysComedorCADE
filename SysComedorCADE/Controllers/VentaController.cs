@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SysComedorCADE.Models;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace SysComedorCADE.Controllers
 {
@@ -51,63 +53,48 @@ namespace SysComedorCADE.Controllers
 
         public JsonResult GuardaVenta(int cant, string des, decimal vunit, decimal vt, int tpago, PersonaModel datosp)
         {
+
             var sms = 0;
 
             var anio = Convert.ToInt32(Session["Gestion"]);
             var usuVenta = Convert.ToString(Session["usuario"]);
-            //fecha ya vá por default e la bd
-            Venta vm = new Venta();
-            vm.anio = anio;
-            vm.CodPersona = datosp.CodPersona;
-            vm.CodTipoPago = tpago;
-            vm.Cantidad = cant;
-            vm.Detalle = des;
-            vm.Costo = vunit;
-            vm.Total = vt;
-            vm.FVenta = DateTime.Now
-            vm.usuario = usuVenta;
-            db.Venta.Add(vm);
-            db.SaveChanges();
-
-            /*TIPO PAGO ::  CUENTAS*/
-            /*Solo cuando sea una venta que pase a la CUENTA y no al Contado */
-            EstadoCuentaPersona e = new EstadoCuentaPersona();
-            if (vm.CodTipoPago == 1)
+            var fechaventa = DateTime.Now;
+            if ((datosp.CiRuc != null) && (datosp.CodPersona > 0) && (des != null) && (cant >0) && (vunit> 0 ) && (tpago > 0))
             {
+            
+            string CS = ConfigurationManager.ConnectionStrings["SCCADE"].ConnectionString;            
+            using (SqlConnection con = new SqlConnection(CS))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText = "exec GrabaVenta @anio, @CodPersona, @CodTipoPago, @Cantidad, @Detalle, @Costo, @Total, @FVenta, @usuario";
+                cmd.Parameters.AddWithValue("@anio", anio);
+                cmd.Parameters.AddWithValue("@CodPersona", datosp.CodPersona);
+                cmd.Parameters.AddWithValue("@CodTipoPago", tpago);
+                cmd.Parameters.AddWithValue("@Cantidad", cant);
+                cmd.Parameters.AddWithValue("@Detalle", des);
+                cmd.Parameters.AddWithValue("@Costo", vunit);
+                cmd.Parameters.AddWithValue("@Total", vt);
+                cmd.Parameters.AddWithValue("@FVenta", fechaventa);
+                cmd.Parameters.AddWithValue("@usuario", usuVenta);
 
+                con.Open();
 
-                DateTime fecha = vm.FVenta.ToString('');
-                var venta = (from v in db.Venta
-                             where v.CodPersona == vm.CodPersona
-                             && v.CodTipoPago == vm.CodTipoPago
-                             && v.anio == vm.anio
-                             && v.usuario == vm.usuario 
-                             && v.FVenta == fecha
-                             select v).FirstOrDefault();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        sms = reader.GetInt32(0);
+                    }
+                }
+                con.Close();
 
-
-
-                e.anio = venta.anio;
-                e.CodVenta = venta.CodVenta;
-                e.CodPersona = venta.CodPersona;
-                //guarda 1 en pagos cuando es deuda Y el valor con positivo
-                e.pagos = 1;
-                e.Valor = venta.Total;
-                e.FRegistro = venta.FVenta;
-                e.usuario = venta.usuario;
-                db.EstadoCuentaPersona.Add(e);
-                db.SaveChanges();
-                sms = 1;
             }
-            else {
-
-                /*Solo cuando sea una venta al Contado */
-                sms = 2;
             }
             return Json(sms, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GrabaEstadoCuentPer()
+        public JsonResult Cobros()
         {
             return Json(JsonRequestBehavior.AllowGet);
         }

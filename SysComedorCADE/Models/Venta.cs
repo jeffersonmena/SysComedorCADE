@@ -21,6 +21,7 @@ namespace SysComedorCADE.Models
         }
     
         public int CodVenta { get; set; }
+        public int anio { get; set; }
         public int CodPersona { get; set; }
         public int CodTipoPago { get; set; }
         public int Cantidad { get; set; }
@@ -28,7 +29,6 @@ namespace SysComedorCADE.Models
         public decimal Costo { get; set; }
         public decimal Total { get; set; }
         public System.DateTime FVenta { get; set; }
-        public int anio { get; set; }
         public string usuario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

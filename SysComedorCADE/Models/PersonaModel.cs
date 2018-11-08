@@ -16,6 +16,5 @@ namespace SysComedorCADE.Models
         public string Dir { get; set; }
         public int CodGenero { get; set; }
         public int CodEntidad { get; set; }
-        public bool? Estado { get; set; }
     }
 }

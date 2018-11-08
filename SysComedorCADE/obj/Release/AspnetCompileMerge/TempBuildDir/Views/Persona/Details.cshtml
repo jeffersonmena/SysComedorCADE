@@ -1,0 +1,90 @@
+﻿@model SysComedorCADE.Models.Persona
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Persona</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NombresCompletos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombresCompletos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CiRuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CiRuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dir)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dir)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entidad.NombreEntidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entidad.NombreEntidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Genero.Abrev)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genero.Abrev)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoPersona.Detalle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoPersona.Detalle)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CodPersona }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

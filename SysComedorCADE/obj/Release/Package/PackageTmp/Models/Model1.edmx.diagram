@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b9724659d5aa4b00ba43154626ad9d70" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="SCCADEModel.CostosAlimentacion" Width="1.5" PointX="8.25" PointY="1.875" />
+        <EntityTypeShape EntityType="SCCADEModel.Entidad" Width="1.5" PointX="0.625" PointY="4" />
+        <EntityTypeShape EntityType="SCCADEModel.EstadoCuentaPersona" Width="1.5" PointX="6.625" PointY="5.25" />
+        <EntityTypeShape EntityType="SCCADEModel.Genero" Width="1.5" PointX="1.875" PointY="7.625" />
+        <EntityTypeShape EntityType="SCCADEModel.HorariosAtencion" Width="1.5" PointX="11.25" PointY="3.25" />
+        <EntityTypeShape EntityType="SCCADEModel.Persona" Width="1.5" PointX="3.75" PointY="2.75" />
+        <EntityTypeShape EntityType="SCCADEModel.TipoPago" Width="1.5" PointX="5.875" PointY="1.875" />
+        <EntityTypeShape EntityType="SCCADEModel.TipoPersona" Width="1.5" PointX="0.75" PointY="1.875" />
+        <EntityTypeShape EntityType="SCCADEModel.Venta" Width="1.5" PointX="9" PointY="4.25" />
+        <AssociationConnector Association="SCCADEModel.FK__Persona__CodEnti__2B3F6F97" />
+        <AssociationConnector Association="SCCADEModel.FK__EstadoCue__CodPe__38996AB5" />
+        <AssociationConnector Association="SCCADEModel.FK__EstadoCue__CodVe__398D8EEE" />
+        <AssociationConnector Association="SCCADEModel.FK__Persona__CodGene__2A4B4B5E" />
+        <AssociationConnector Association="SCCADEModel.FK__Persona__CodTipo__29572725" />
+        <AssociationConnector Association="SCCADEModel.FK__Venta__CodPerson__35BCFE0A" />
+        <AssociationConnector Association="SCCADEModel.FK__Venta__CodTipoPa__34C8D9D1" />
+        <EntityTypeShape EntityType="SCCADEModel.Usuarios" Width="1.5" PointX="6" PointY="8.625" />
+        <AssociationConnector Association="SCCADEModel.FK__Usuario__CodPers__2E1BDC42" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

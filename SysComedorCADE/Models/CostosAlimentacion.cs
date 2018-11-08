@@ -15,10 +15,10 @@ namespace SysComedorCADE.Models
     public partial class CostosAlimentacion
     {
         public int CodCosto { get; set; }
+        public int anio { get; set; }
         public string Detalle { get; set; }
         public decimal Valor { get; set; }
         public System.DateTime FRegistro { get; set; }
         public Nullable<bool> Estado { get; set; }
-        public int anio { get; set; }
     }
 }

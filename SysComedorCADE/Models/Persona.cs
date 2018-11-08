@@ -18,8 +18,8 @@ namespace SysComedorCADE.Models
         public Persona()
         {
             this.EstadoCuentaPersona = new HashSet<EstadoCuentaPersona>();
-            this.Venta = new HashSet<Venta>();
             this.Usuarios = new HashSet<Usuarios>();
+            this.Venta = new HashSet<Venta>();
         }
     
         public int CodPersona { get; set; }
@@ -31,7 +31,6 @@ namespace SysComedorCADE.Models
         public string Dir { get; set; }
         public int CodGenero { get; set; }
         public int CodEntidad { get; set; }
-        public Nullable<bool> Estado { get; set; }
     
         public virtual Entidad Entidad { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -39,8 +38,8 @@ namespace SysComedorCADE.Models
         public virtual Genero Genero { get; set; }
         public virtual TipoPersona TipoPersona { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Venta> Venta { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Usuarios> Usuarios { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Venta> Venta { get; set; }
     }
 }

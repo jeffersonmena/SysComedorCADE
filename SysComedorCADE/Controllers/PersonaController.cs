@@ -36,8 +36,7 @@ namespace SysComedorCADE.Controllers
                             Cel = p.Cel,
                             Dir = p.Dir,
                             CodGenero = p.CodGenero,
-                            CodEntidad = p.CodEntidad,
-                            Estado = p.Estado   
+                            CodEntidad = p.CodEntidad
                        }).FirstOrDefault();
 
                 return Json(per,JsonRequestBehavior.AllowGet);
