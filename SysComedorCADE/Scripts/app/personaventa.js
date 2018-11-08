@@ -13,23 +13,23 @@ app.controller('CtrlVenta', function ($scope, $http, $window) {
         var hora = $scope.horasalida.toString();
         
         if ((hora <= "00:00:00") && (hora >= '04:59:59')) {
-            $scope.dt.detalle = "Extracurricular/s";
+          return  $scope.dt.detalle = "Extracurricular/s";
         }
         if ((hora >= '05:00:00') && (hora <= '11:30:59')) {
-            $scope.dt.detalle = "Desayuno/s";
+            return $scope.dt.detalle = "Desayuno/s";
         }
         if ((hora >= '11:31:00') && (hora <='17:30:59')) {
-             $scope.dt.detalle = "Almuerzo/s";
+            return $scope.dt.detalle = "Almuerzo/s";
         }
         if ((hora >='17:31:00' )&& (hora <='23:59:59')) {
-             $scope.dt.detalle = "Cena/s";
+            return $scope.dt.detalle = "Cena/s";
         }
     }
     $scope.horarioatencion();
 
     $("#idbuscar").keyup(function () {
         var bus = $("#idbuscar").val();
-        if (bus.length > 9) {
+        if (bus.length == 10) {
             $scope.busca(bus);
 
         }});
@@ -39,7 +39,8 @@ app.controller('CtrlVenta', function ($scope, $http, $window) {
         $http.post("/Persona/BusPersona", { ci: e }).success(function (result) {
             $scope.perventa = result;
             $scope.horarioatencion();
-            $("#btnmodalvende").trigger('click');
+            //$("#btnmodalvende").trigger('click');
+            $("#Vende").modal('show');
         }).error(function (result) {
             console.log(result);
         });

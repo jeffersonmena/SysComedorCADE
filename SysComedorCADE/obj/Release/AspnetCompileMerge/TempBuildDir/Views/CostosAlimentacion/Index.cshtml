@@ -5,60 +5,195 @@
 }
 
 
-   @* @Html.ActionLink("Create New", "Create", new {@type= "button", @class = "btn btn-default" })*@
-   <a href="@Url.Action("Create","CostosAlimentacion",null)">
- <button type="button" class="btn btn-primary"><i class="fa fa-coffee"></i> Nuevo</button>
-</a> 
-<div class="table table-responsive">
-    <table class="table table-hover">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Detalle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Valor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FRegistro)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.anio)
-            </th>
-            <th></th>
-        </tr>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Detalle)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Valor)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FRegistro)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Estado)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.anio)
-                </td>
-                <td>
-                    <a href="@Url.Action("Edit","CostosAlimentacion",new { id = item.CodCosto })">
-                        <button type="button" class="btn btn-primary"><i class="fa fa-coffee"></i> Nuevo</button>
-                    </a>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.CodCosto ,@class= "glyphicon glyphicon-trash" })
-                    @Html.ActionLink("Details", "Details", new { id = item.CodCosto }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.CodCosto })
-                </td>
-            </tr>
-        }
+<button id="btn_edit_create" data-toggle="modal" data-target="#crearnuevo" type="button" class="btn btn-primary btn-xs"><span class="fa fa-coffee"></span>Nuevo</button><br />
+<div ng-app="AppCostoAlimentacion" ng-controller="CtrlCostos">
 
-    </table>
+
+    <div class="table table-responsive">
+        <table class="table table-hover" style="text-align:center;">
+            <thead>
+                <tr>
+                    <th class="col-md-2">Servicio</th>
+                    <th class="col-md-1">Costo</th>
+                    <th class="col-md-3">Fecha de Registro</th>
+                    <th class="col-md-2">Año</th>
+                    <th class="col-md-2">Estado</th>
+                    <th class="col-md-1"></th>
+                    <th class="col-md-1"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="l in listarcostos">
+                    <td class="col-md-2">{{l.Detalle}}</td>
+                    <td class="col-md-1">{{l.Valor}}</td>
+                    <td class="col-md-3">{{l.FRegistro.substr(6,13) | date:'dd-MMM-yyyy'}}</td>
+                    <td class="col-md-2">{{l.anio}}</td>
+                    <td class="col-md-2">{{l.Estado}}</td>
+                    <td class="col-md-1">
+                        <button id="btnDelete" type="button" class="btn btn-danger btn-xs" ng-click="eliminar(l.CodCosto)"><span class="fa fa-trash"></span></button>
+                    </td>
+                    <td class="col-md-1">
+                        <button id="btnEdit" type="button" class="btn btn-warning btn-xs" ng-click="editar(l.CodCosto)"><span class="fa fa-edit"></span></button>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+
+
+    <div class="modal fade" id="crearnuevo" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Detalle de Venta</h4>
+                    <button id="btnCloseModal"  type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="col-md-10">
+                                            <label class="fa fa-coffee">
+                                                Servicio
+                                            </label>
+                                            <input required class="form-control" ng-model="guarda.Detalle" type="text" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="col-md-10">
+                                            <label class="fa fa-dollar">
+                                                Costo
+                                            </label>
+                                            <input required class="form-control" ng-model="guarda.Valor" type="number" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><br />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="col-md-10">
+                                            <label class="fa fa-charging-station">
+                                                Estado
+                                            </label>
+                                            <center>
+                                                <label><input ng-model="guarda.Estado" type="checkbox" class="form-control" checked />Agregar Cuenta </label>
+                                            </center>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button id="btnsave" ng-click="GuardaServicio(guarda)" type="button" class="btn btn-primary">Guardar</button>
+                    <button id="btnedit" ng-click="GuardaServicio(guarda)" type="button" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    var app = angular.module('AppCostoAlimentacion', []);
+    app.controller('CtrlCostos', function ($scope, $http, $window) {
+
+        $scope.listarcostos = [];
+        $scope.listar = function () {
+            $http.get("/CostosAlimentacion/listar").success(function (r) {
+                $scope.listarcostos = r;
+            }).error(function (r) {
+                console.log(r);
+            })
+        }
+        $scope.listar();
+
+        //$scope.guarda = {};
+        $scope.GuardaServicio = function (guarda) {
+            $http.post("/CostosAlimentacion/GuardaServicio", guarda).success(function (r) {
+                if (r == 1) {
+                    toastr.success("Guardado con Exito", "Costo de Servico");                    
+                    $("#btnCloseModal").trigger('click');
+                }
+                if (r == 2) {
+                    toastr.error("Verifique  que los campos no estén vacios", "Costo de Servico");
+                }
+                $scope.listar();
+            }).error(function (r) {
+                console.log(r);
+            })
+        }
+
+        $scope.eliminar = function (id) {
+            $http.post("/CostosAlimentacion/EliminaServicio", id).success(function (r) {
+                if (r == 1) {
+                    toastr.success("Se a eliminado con exito", "Costo de Servico");
+                }
+                if (r == 2) {
+                    toastr.error("Ocurrio un error al Eliminar , Intente nuevamente", "Costo de Servico");
+                }
+                $scope.listar();
+            }).error(function (r) {
+                console.log(r);
+            })
+        }
+
+        /* Pasa los datos al modal para editar pero al guardar la edición guarda por la funcion GuardaServicio */
+        $scope.editar = function (id) {
+            $scope.guarda = [];
+            $scope.selectCodeRent = 0;
+            for (var j = 0; j < $scope.listarcostos.length; j++) {
+                $scope.Objedit = $scope.listarcostos[j];
+                $scope.selectCodCosto = id;
+                if ($scope.Objedit.CodCosto == $scope.selectCodCosto) {
+                    $scope.guarda = $scope.listarcostos[j];
+                }
+            }
+            
+            $("#btnsave").hide();
+            $("#btnedit").show();
+            $("#btn_edit_create").trigger('click');
+            return $scope.guarda;
+        }
+
+        $scope.guardaedicion = function () {
+            $http.post("/CostosAlimentacion/EditaServicio").success(function (r) {
+                if (r == 1) {
+                    toastr.error("Servicio Editado correctamente", "Edición de Servicio");
+                    $("#btnsave").show();
+                    $("#btnedit").hide();
+                    $("#btnCloseModal").trigger('click');
+                }
+
+                $scope.listar();
+            }).error(function (r) {
+                console.log(r);
+            });
+        }
+
+
+
+
+    });
+
+</script>

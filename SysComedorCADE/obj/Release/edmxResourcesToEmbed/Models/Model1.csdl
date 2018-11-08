@@ -7,8 +7,10 @@
     <EntitySet Name="Genero" EntityType="SCCADEModel.Genero" />
     <EntitySet Name="HorariosAtencion" EntityType="SCCADEModel.HorariosAtencion" />
     <EntitySet Name="Persona" EntityType="SCCADEModel.Persona" />
+    <EntitySet Name="sysdiagrams" EntityType="SCCADEModel.sysdiagrams" />
     <EntitySet Name="TipoPago" EntityType="SCCADEModel.TipoPago" />
     <EntitySet Name="TipoPersona" EntityType="SCCADEModel.TipoPersona" />
+    <EntitySet Name="Usuarios" EntityType="SCCADEModel.Usuarios" />
     <EntitySet Name="Venta" EntityType="SCCADEModel.Venta" />
     <AssociationSet Name="FK__Persona__CodEnti__2B3F6F97" Association="SCCADEModel.FK__Persona__CodEnti__2B3F6F97">
       <End Role="Entidad" EntitySet="Entidad" />
@@ -30,6 +32,10 @@
       <End Role="TipoPersona" EntitySet="TipoPersona" />
       <End Role="Persona" EntitySet="Persona" />
     </AssociationSet>
+    <AssociationSet Name="FK__Usuario__CodPers__2E1BDC42" Association="SCCADEModel.FK__Usuario__CodPers__2E1BDC42">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
     <AssociationSet Name="FK__Venta__CodPerson__35BCFE0A" Association="SCCADEModel.FK__Venta__CodPerson__35BCFE0A">
       <End Role="Persona" EntitySet="Persona" />
       <End Role="Venta" EntitySet="Venta" />
@@ -38,22 +44,58 @@
       <End Role="TipoPago" EntitySet="TipoPago" />
       <End Role="Venta" EntitySet="Venta" />
     </AssociationSet>
-    <EntitySet Name="Usuarios" EntityType="SCCADEModel.Usuarios" />
-    <AssociationSet Name="FK__Usuario__CodPers__2E1BDC42" Association="SCCADEModel.FK__Usuario__CodPers__2E1BDC42">
-      <End Role="Persona" EntitySet="Persona" />
-      <End Role="Usuarios" EntitySet="Usuarios" />
-    </AssociationSet>
+    <FunctionImport Name="GrabaVenta" ReturnType="Collection(Int32)">
+      <Parameter Name="anio" Mode="In" Type="Int32" />
+      <Parameter Name="CodPersona" Mode="In" Type="Int32" />
+      <Parameter Name="CodTipoPago" Mode="In" Type="Int32" />
+      <Parameter Name="Cantidad" Mode="In" Type="Int32" />
+      <Parameter Name="Detalle" Mode="In" Type="String" />
+      <Parameter Name="Costo" Mode="In" Type="Decimal" />
+      <Parameter Name="Total" Mode="In" Type="Decimal" />
+      <Parameter Name="FVenta" Mode="In" Type="DateTime" />
+      <Parameter Name="usuario" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(SCCADEModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(SCCADEModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
   </EntityContainer>
   <EntityType Name="CostosAlimentacion">
     <Key>
       <PropertyRef Name="CodCosto" />
     </Key>
     <Property Name="CodCosto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="anio" Type="Int32" Nullable="false" />
     <Property Name="Detalle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Valor" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
     <Property Name="FRegistro" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Estado" Type="Boolean" />
-    <Property Name="anio" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Entidad">
     <Key>
@@ -72,15 +114,15 @@
       <PropertyRef Name="CodEstadoCta" />
     </Key>
     <Property Name="CodEstadoCta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="anio" Type="Int32" Nullable="false" />
     <Property Name="CodVenta" Type="Int32" Nullable="false" />
     <Property Name="CodPersona" Type="Int32" Nullable="false" />
     <Property Name="pagos" Type="Int32" />
     <Property Name="Valor" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
     <Property Name="FRegistro" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Persona" Relationship="SCCADEModel.FK__EstadoCue__CodPe__38996AB5" FromRole="EstadoCuentaPersona" ToRole="Persona" />
     <NavigationProperty Name="Venta" Relationship="SCCADEModel.FK__EstadoCue__CodVe__398D8EEE" FromRole="EstadoCuentaPersona" ToRole="Venta" />
-    <Property Name="anio" Type="Int32" Nullable="false" />
-    <Property Name="usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Genero">
     <Key>
@@ -114,13 +156,22 @@
     <Property Name="Dir" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="CodGenero" Type="Int32" Nullable="false" />
     <Property Name="CodEntidad" Type="Int32" Nullable="false" />
-    <Property Name="Estado" Type="Boolean" />
     <NavigationProperty Name="Entidad" Relationship="SCCADEModel.FK__Persona__CodEnti__2B3F6F97" FromRole="Persona" ToRole="Entidad" />
     <NavigationProperty Name="EstadoCuentaPersona" Relationship="SCCADEModel.FK__EstadoCue__CodPe__38996AB5" FromRole="Persona" ToRole="EstadoCuentaPersona" />
     <NavigationProperty Name="Genero" Relationship="SCCADEModel.FK__Persona__CodGene__2A4B4B5E" FromRole="Persona" ToRole="Genero" />
     <NavigationProperty Name="TipoPersona" Relationship="SCCADEModel.FK__Persona__CodTipo__29572725" FromRole="Persona" ToRole="TipoPersona" />
-    <NavigationProperty Name="Venta" Relationship="SCCADEModel.FK__Venta__CodPerson__35BCFE0A" FromRole="Persona" ToRole="Venta" />
     <NavigationProperty Name="Usuarios" Relationship="SCCADEModel.FK__Usuario__CodPers__2E1BDC42" FromRole="Persona" ToRole="Usuarios" />
+    <NavigationProperty Name="Venta" Relationship="SCCADEModel.FK__Venta__CodPerson__35BCFE0A" FromRole="Persona" ToRole="Venta" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="TipoPago">
     <Key>
@@ -136,14 +187,28 @@
     </Key>
     <Property Name="CodTipoPer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Detalle" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Persona" Relationship="SCCADEModel.FK__Persona__CodTipo__29572725" FromRole="TipoPersona" ToRole="Persona" />
     <Property Name="CodEntidad" Type="Int32" />
+    <NavigationProperty Name="Persona" Relationship="SCCADEModel.FK__Persona__CodTipo__29572725" FromRole="TipoPersona" ToRole="Persona" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="CodUsuario" />
+    </Key>
+    <Property Name="CodUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CodPersona" Type="Int32" Nullable="false" />
+    <Property Name="Usuario" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Clave" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FRegistro" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="politica" Type="Int32" />
+    <Property Name="Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Persona" Relationship="SCCADEModel.FK__Usuario__CodPers__2E1BDC42" FromRole="Usuarios" ToRole="Persona" />
   </EntityType>
   <EntityType Name="Venta">
     <Key>
       <PropertyRef Name="CodVenta" />
     </Key>
     <Property Name="CodVenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="anio" Type="Int32" Nullable="false" />
     <Property Name="CodPersona" Type="Int32" Nullable="false" />
     <Property Name="CodTipoPago" Type="Int32" Nullable="false" />
     <Property Name="Cantidad" Type="Int32" Nullable="false" />
@@ -151,11 +216,10 @@
     <Property Name="Costo" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
     <Property Name="Total" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
     <Property Name="FVenta" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="EstadoCuentaPersona" Relationship="SCCADEModel.FK__EstadoCue__CodVe__398D8EEE" FromRole="Venta" ToRole="EstadoCuentaPersona" />
     <NavigationProperty Name="Persona" Relationship="SCCADEModel.FK__Venta__CodPerson__35BCFE0A" FromRole="Venta" ToRole="Persona" />
     <NavigationProperty Name="TipoPago" Relationship="SCCADEModel.FK__Venta__CodTipoPa__34C8D9D1" FromRole="Venta" ToRole="TipoPago" />
-    <Property Name="anio" Type="Int32" Nullable="false" />
-    <Property Name="usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK__Persona__CodEnti__2B3F6F97">
     <End Type="SCCADEModel.Entidad" Role="Entidad" Multiplicity="1" />
@@ -217,6 +281,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__Usuario__CodPers__2E1BDC42">
+    <End Type="SCCADEModel.Persona" Role="Persona" Multiplicity="1" />
+    <End Type="SCCADEModel.Usuarios" Role="Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="CodPersona" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="CodPersona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Venta__CodPerson__35BCFE0A">
     <End Type="SCCADEModel.Persona" Role="Persona" Multiplicity="1" />
     <End Type="SCCADEModel.Venta" Role="Venta" Multiplicity="*" />
@@ -241,29 +317,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="Usuarios">
-    <Key>
-      <PropertyRef Name="CodUsuario" />
-    </Key>
-    <Property Name="CodUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CodPersona" Type="Int32" Nullable="false" />
-    <Property Name="Usuario" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="Clave" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="FRegistro" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Estado" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="Persona" Relationship="SCCADEModel.FK__Usuario__CodPers__2E1BDC42" FromRole="Usuarios" ToRole="Persona" />
-    <Property Name="politica" Type="Int32" />
-  </EntityType>
-  <Association Name="FK__Usuario__CodPers__2E1BDC42">
-    <End Type="SCCADEModel.Persona" Role="Persona" Multiplicity="1" />
-    <End Type="SCCADEModel.Usuarios" Role="Usuarios" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Persona">
-        <PropertyRef Name="CodPersona" />
-      </Principal>
-      <Dependent Role="Usuarios">
-        <PropertyRef Name="CodPersona" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
 </Schema>

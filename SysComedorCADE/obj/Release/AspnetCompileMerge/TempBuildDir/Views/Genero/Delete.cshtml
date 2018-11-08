@@ -4,12 +4,8 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
+<h3>El Tipo de Genero se eliminará</h3>
 <div>
-    <h4>Genero</h4>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Abrev)
@@ -41,8 +37,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <button type="submit" class="btn btn-danger btn-xs"><span class="fa fa-trash"> Eliminar</span></button>
+            <a href="@Url.Action("Index","Genero",null)"><input value="Regresar" type="button" class="btn btn-warning btn-xs" /></a>     
         </div>
     }
 </div>

@@ -15,7 +15,7 @@ app.controller('CtrlVenta', function ($scope, $http, $window) {
         if ((hora <= "00:00:00") && (hora >= '04:59:59')) {
             $scope.dt.detalle = "Extracurricular/s";
         }
-        if ((hora >= "05:00:00") && (hora <= "11:30:59")) {
+        if ((hora >= '05:00:00') && (hora <= '11:30:59')) {
             $scope.dt.detalle = "Desayuno/s";
         }
         if ((hora >= '11:31:00') && (hora <='17:30:59')) {
@@ -24,17 +24,18 @@ app.controller('CtrlVenta', function ($scope, $http, $window) {
         if ((hora >='17:31:00' )&& (hora <='23:59:59')) {
              $scope.dt.detalle = "Cena/s";
         }
-
-
     }
     $scope.horarioatencion();
 
     $("#idbuscar").keyup(function () {
         var bus = $("#idbuscar").val();
-        $scope.busca(bus);
-    });
+        if (bus.length > 9) {
+            $scope.busca(bus);
+
+        }});
     $scope.perventa = [];
     $scope.busca = function (e) {
+        
         $http.post("/Persona/BusPersona", { ci: e }).success(function (result) {
             $scope.perventa = result;
             $scope.horarioatencion();
@@ -42,6 +43,8 @@ app.controller('CtrlVenta', function ($scope, $http, $window) {
         }).error(function (result) {
             console.log(result);
         });
+        
+
 
     }
 

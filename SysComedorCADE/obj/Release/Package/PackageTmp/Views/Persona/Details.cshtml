@@ -4,10 +4,8 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>Persona</h4>
+    <h4><span class="fa fa-user"> Detalles Personas</span></h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -49,15 +47,6 @@
         <dd>
             @Html.DisplayFor(model => model.Dir)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Estado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Estado)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Entidad.NombreEntidad)
         </dt>
@@ -85,6 +74,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CodPersona }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a href="@Url.Action("Edit","Persona",new { id = Model.CodPersona })"><button type="button" class="btn btn-success btn-xs"><span class="fa fa-edit"> Editar</span></button></a>
+    <a href="@Url.Action("Index","Persona",null)"><input value="Regresar" type="button" class="btn btn-warning btn-xs" /></a> 
 </p>

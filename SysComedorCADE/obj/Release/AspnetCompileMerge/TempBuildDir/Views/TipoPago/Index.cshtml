@@ -4,15 +4,15 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<a href="@Url.Action("Create","TipoPago",null)"><button type="button" class="btn btn-primary"><span class="fa fa-plus"></span> Nuevo</button></a><br />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<center>
+    <h4>Lista de Tipo de Pagos</h4>
+</center>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.DetTipoPago)
+            Tipo de Pago
         </th>
         <th></th>
     </tr>
@@ -23,9 +23,9 @@
             @Html.DisplayFor(modelItem => item.DetTipoPago)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CodTipoPago }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CodTipoPago }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CodTipoPago })
+            <a href="@Url.Action("Edit","TipoPago",new { id = item.CodTipoPago })"><button type="button" class="btn btn-success btn-xs"><span class="fa fa-edit"></span></button></a>
+            <a href="@Url.Action("Delete","TipoPago",new { id = item.CodTipoPago })"><button type="button" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span></button></a>
+            <a href="@Url.Action("Details","TipoPago",new { id = item.CodTipoPago })"><button type="button" class="btn btn-warning btn-xs"><span class="fa fa-list"></span></button></a>
         </td>
     </tr>
 }

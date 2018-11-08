@@ -4,42 +4,47 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<a href="@Url.Action("Create","Genero",null)"><button type="button" class="btn btn-primary"><span class="fa fa-plus"></span> Nuevo</button></a><br />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Abrev)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Detalle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Estado)
-        </th>
-        <th></th>
-    </tr>
+<center>
+    <h4>Lista de Tipo Genero</h4>
+</center>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Abrev)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Detalle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estado)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CodGenero }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CodGenero }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CodGenero })
-        </td>
-    </tr>
-}
+<div class="table table-responsive">
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Abrev)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Detalle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Abrev)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Detalle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit","Genero",new { id = item.CodGenero })"><button type="button" class="btn btn-success btn-xs"><span class="fa fa-edit"></span></button></a>
+                    <a href="@Url.Action("Delete","Genero",new { id = item.CodGenero })"><button type="button" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span></button></a>
+                    <a href="@Url.Action("Details","Genero",new { id = item.CodGenero })"><button type="button" class="btn btn-warning btn-xs"><span class="fa fa-list"></span></button></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+

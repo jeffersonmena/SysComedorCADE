@@ -159,5 +159,6 @@ C:\Users\Jefferson\Source\Repos\SysComedorCade\SysComedorCADE\bin\Microsoft.Owin
 C:\Users\Jefferson\Source\Repos\SysComedorCade\SysComedorCADE\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Jefferson\Source\Repos\SysComedorCade\SysComedorCADE\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Jefferson\Source\Repos\SysComedorCade\SysComedorCADE\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Jefferson\Source\Repos\SysComedorCade\SysComedorCADE\obj\Debug\SysComedorCADE.csprojResolveAssemblyReference.cache
 C:\Users\Jefferson\Source\Repos\SysComedorCade\SysComedorCADE\obj\Debug\SysComedorCADE.dll
 C:\Users\Jefferson\Source\Repos\SysComedorCade\SysComedorCADE\obj\Debug\SysComedorCADE.pdb

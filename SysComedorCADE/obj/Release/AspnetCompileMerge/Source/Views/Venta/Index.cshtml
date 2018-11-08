@@ -9,8 +9,8 @@
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
-
-    <table class="table">
+    divv class= table table-responsive  
+    <table class="table table-hover">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Cantidad)
@@ -74,6 +74,7 @@
     }
 
     </table>*@
+
 <div ng-app="AppVenta" ng-controller="CtrlVenta">
     <div class="container modal-content">
         <div class="modal-header">
@@ -81,7 +82,7 @@
         </div>
         <div class="modal-body">
             <div class="row">
-                <div class="col-md-offset-4 col-md-8">
+                <div class="col-md-8">
                     <form>
                         <div class="form-group">
                             <label class="form-label-group">Buscar Persona</label>
@@ -222,73 +223,3 @@
 
 </div>
 
-
-
-<style type="text/css">
-    .panel {
-        margin-bottom: 20px;
-        background-color: #fff;
-        border: 1px solid transparent;
-        border-radius: 4px;
-        -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
-        box-shadow: 0 1px 1px rgba(0,0,0,.05);
-    }
-
-    .panel-primary {
-        border-color: #337ab7;
-    }
-
-    .panel-info {
-        border-color: #bce8f1;
-    }
-    .panel-danger {
-    border-color: #ebccd1;
-}
-
-    .panel-heading {
-        padding: 10px 15px;
-        border-bottom: 1px solid transparent;
-        border-top-left-radius: 3px;
-        border-top-right-radius: 3px;
-    }
-    .panel-danger>.panel-heading {
-    color: #a94442;
-    background-color: #f2dede;
-    border-color: #ebccd1;
-}
-    .panel-info > .panel-heading {
-        color: #31708f;
-        background-color: #d9edf7;
-        border-color: #bce8f1;
-    }
-
-    .panel-title {
-        margin-top: 0;
-        margin-bottom: 0;
-        font-size: 16px;
-        color: inherit;
-    }
-
-    .panel-body {
-        padding: 15px;
-    }
-    /*.modal-title {
-           margin: 0;
-           line-height: 1.42857143;
-       }*/
-
-
-
-    /*
-
-       .panel-primary > .panel-heading {
-           color: #fff;
-           background-color: #337ab7;
-           border-color: #337ab7;
-       }
-
-
-
-
-    */
-</style>

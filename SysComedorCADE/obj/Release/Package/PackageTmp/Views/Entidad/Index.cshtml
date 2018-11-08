@@ -4,54 +4,59 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<a href="@Url.Action("Create","Entidad",null)"><button type="button" class="btn btn-primary"><span class="fa fa-plus"></span> Nuevo</button></a><br />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NombreEntidad)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ruc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Dir)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Estado)
-        </th>
-        <th></th>
-    </tr>
+<center>
+    <h4>Lista de Entidades</h4>
+</center>
+<div class="table table-responsive">
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreEntidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ruc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dir)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NombreEntidad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ruc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Dir)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estado)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CodEntidad }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CodEntidad }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CodEntidad })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreEntidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ruc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dir)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit","Entidad",new { id = item.CodEntidad })"><button  type="button" class="btn btn-success btn-xs"><span class="fa fa-edit"></span></button></a>
+                    <a href="@Url.Action("Delete","Entidad",new { id = item.CodEntidad })"><button  type="button" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span></button></a>
+                    <a href="@Url.Action("Details","Entidad",new { id = item.CodEntidad })"><button  type="button" class="btn btn-warning btn-xs"><span class="fa fa-list"></span></button></a>                 
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+</div>
+
+
